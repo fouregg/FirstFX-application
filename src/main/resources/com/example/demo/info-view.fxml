@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane disable="true" dividerPositions="0.7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<SplitPane disable="true" dividerPositions="0.7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -61,7 +61,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextArea fx:id="rewiev" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
+            <TextArea fx:id="reviewArea" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
             <Label layoutX="50.0" layoutY="250.0" text="Rewiev" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="390.0">
                <font>
                   <Font size="18.0" />

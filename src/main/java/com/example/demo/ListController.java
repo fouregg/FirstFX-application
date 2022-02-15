@@ -3,13 +3,17 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,9 @@ import java.util.List;
 public class ListController {
     @FXML
     private VBox vBoxRead;
+
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     private AnchorPane book;
@@ -37,13 +44,13 @@ public class ListController {
             pane.maxWidth(Region.USE_COMPUTED_SIZE);
             vBoxRead.getChildren().add(pane);
 
-            createChildrenAnchorElement(pane);
+            createChildrenAnchorElement(pane, i);
         }
     }
 
-    public void createChildrenAnchorElement(AnchorPane book)
+    public void createChildrenAnchorElement(AnchorPane book, int i)
     {
-        Label name_of_book = new Label("Name of Book1");
+        Label name_of_book = new Label("Name of Book");
         name_of_book.minWidth(100);
         name_of_book.minHeight(50);
         AnchorPane.setBottomAnchor(name_of_book,30.0);
@@ -51,7 +58,7 @@ public class ListController {
         AnchorPane.setRightAnchor(name_of_book,500.0);
         AnchorPane.setTopAnchor(name_of_book,10.0);
 
-        Label name_of_author = new Label("Author1");
+        Label name_of_author = new Label("Author");
         AnchorPane.setBottomAnchor(name_of_author,10.0);
         AnchorPane.setLeftAnchor(name_of_author,10.0);
         AnchorPane.setRightAnchor(name_of_author,514.0);
@@ -80,37 +87,50 @@ public class ListController {
         info.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                infoAboutBook();
+                try {
+                    infoAboutBook(i);
+                }
+                catch (Exception e)
+                {
+                    System.err.println(e.getLocalizedMessage());
+                }
             }
         });
 
         markAsRead.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
-                markAsRead();
-            }
+            public void handle(ActionEvent actionEvent) { markAsRead(i); }
         });
 
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                deleteBook();
+                deleteBook(i);
             }
         });
         System.out.println();
     }
 
-    public void infoAboutBook()
+    public void infoAboutBook(int index) throws Exception
+    {
+        Stage stage = (Stage)((Node)tabPane).getScene().getWindow();
+        FXMLLoader root = new FXMLLoader(getClass().getResource("info-view.fxml"));
+        ViewController controller = new ViewController("Тест аннотации", "Игра",
+                                            "Крстиан Боуил", "ЭКСМО", "1234",
+                                                        "review test", "Harry.jpg", "Harry2.jpg");
+        root.setController(controller);
+        SplitPane splitPane = root.load();
+        Scene scene = new Scene(splitPane, 800, 600);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void markAsRead(int index)
     {
 
     }
 
-    public void markAsRead()
-    {
-
-    }
-
-    public void deleteBook()
+    public void deleteBook(int index)
     {
 
     }
