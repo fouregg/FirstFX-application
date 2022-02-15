@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ListController">
+  <tabs>
+    <Tab text="Read">
+      <content>
+        <ScrollPane fx:id="scrollPaneRead" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
+        <VBox fx:id="vBoxRead"/>
+        </ScrollPane>
+      </content>
+    </Tab>
+    <Tab text="Will read">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+    <Tab text="Reading">
+      <content>
+        <ListView minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

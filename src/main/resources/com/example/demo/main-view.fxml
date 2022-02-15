@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="listBook" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="28.0" prefWidth="800.0" AnchorPane.bottomAnchor="575.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Clear DB" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Add Book" />
+                <MenuItem mnemonicParsing="false" text="Search" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" onShowing="#clickOnListBook" text="List Book">
+               <items>
+                  <MenuItem fx:id="MenuItems" mnemonicParsing="false" text="Read" />
+                  <MenuItem mnemonicParsing="false" text="Will read" />
+                  <MenuItem mnemonicParsing="false" text="Reading" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Statistic" />
+            
+        </menus>
+      </MenuBar>
+      <Label fx:id="mainLabel" text="Label" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0" />
+   </children>
+</AnchorPane>
