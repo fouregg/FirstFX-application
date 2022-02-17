@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class ListController implements Initializable {
+public class ListController extends MainController implements Initializable {
     private LinkedList<Book> listBook;
     @FXML
     private VBox vBoxRead;
@@ -152,7 +152,7 @@ public class ListController implements Initializable {
                 listBook.get(index).getImg2()
                 );
         root.setController(controller);
-        SplitPane splitPane = root.load();
+        AnchorPane splitPane = root.load();
 
         Scene scene = new Scene(splitPane, 800, 600);
         stage.setScene(scene);

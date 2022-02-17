@@ -3,26 +3,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<AnchorPane fx:id="listBook" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="28.0" prefWidth="800.0" AnchorPane.bottomAnchor="575.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Clear DB" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Add Book" onAction="#clickOnAddBook"/>
+            <MenuItem mnemonicParsing="false" text="Search" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="List Book">
+          <items>
+            <MenuItem fx:id="MenuItems" mnemonicParsing="false" onAction="#clickOnListBook" text="Read" />
+            <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Will read" />
+            <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Reading" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Statistic" />
+      </menus>
+    </MenuBar>
+    <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="25.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <tabs>
+      <Tab text="Read">
+        <content>
+          <ScrollPane fx:id="scrollPaneRead" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
+          <VBox fx:id="vBoxRead" />
+          </ScrollPane>
+        </content>
+      </Tab>
+      <Tab text="Will read">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
+      <Tab text="Reading">
+        <content>
+          <ListView minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
 
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-  <tabs>
-    <Tab text="Read">
-      <content>
-        <ScrollPane fx:id="scrollPaneRead" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
-        <VBox fx:id="vBoxRead"/>
-        </ScrollPane>
-      </content>
-    </Tab>
-    <Tab text="Will read">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
-    <Tab text="Reading">
-      <content>
-        <ListView minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-
-      </content>
-    </Tab>
-  </tabs>
-</TabPane>
+        </content>
+      </Tab>
+    </tabs>
+  </TabPane>
+  </children>
+</AnchorPane>

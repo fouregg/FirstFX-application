@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewController implements Initializable {
+public class ViewController extends MainController implements Initializable {
     StringProperty authorOfBook = new SimpleStringProperty();
     StringProperty annotationText = new SimpleStringProperty();
     StringProperty nameOfBook = new SimpleStringProperty();

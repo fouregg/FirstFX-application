@@ -9,9 +9,9 @@ public class Book {
     private String annotationText;
     private String img1;
     private String img2;
-    private float rate;
+    private int rate;
 
-    public Book(String nameOfBook, String authorOfBook, String publishingOfHouse, String isbn, String review, String annotationText, String img1, String img2, float rate) {
+    public Book(String nameOfBook, String authorOfBook, String publishingOfHouse, String isbn, String review, String annotationText, String img1, String img2, int rate) {
         this.nameOfBook = nameOfBook;
         this.authorOfBook = authorOfBook;
         this.publishingOfHouse = publishingOfHouse;
@@ -87,7 +87,7 @@ public class Book {
         this.img2 = img2;
     }
 
-    public void setRate(float rate){
+    public void setRate(int rate){
         this.rate = rate;
     }
 
