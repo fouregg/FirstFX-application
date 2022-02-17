@@ -21,14 +21,10 @@
             <Menu mnemonicParsing="false" text="List Book">
                <items>
                   <MenuItem fx:id="MenuItems" mnemonicParsing="false" onAction="#clickOnListBook" text="Read" />
-<<<<<<< Updated upstream
                   <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Will read" />
                   <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Reading" />
-=======
-                  <MenuItem mnemonicParsing="false" text="Will read" />
-                  <MenuItem mnemonicParsing="false" text="Reading" />
->>>>>>> Stashed changes
-               </items></Menu>
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Statistic" />
             
         </menus>
