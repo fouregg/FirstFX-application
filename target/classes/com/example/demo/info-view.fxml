@@ -6,11 +6,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<<<<<<< Updated upstream
 <SplitPane disable="true" dividerPositions="0.7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+=======
+<SplitPane dividerPositions="0.7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> Stashed changes
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+    <AnchorPane minHeight="400.0" minWidth="500.0" prefHeight="160.0" prefWidth="0.0" SplitPane.resizableWithParent="false">
          <children>
-            <TextArea fx:id="annotation" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" scrollTop="1.0" wrapText="true" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0" />
+            <TextArea fx:id="annotation" editable="false" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" scrollTop="1.0" wrapText="true" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0" />
             <Label text="NameBook" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
                <font>
                   <Font size="18.0" />
@@ -61,14 +65,19 @@
                   <Font size="18.0" />
                </font>
             </Label>
+<<<<<<< Updated upstream
             <TextArea fx:id="rewiev" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
+=======
+            <TextArea fx:id="reviewArea" editable="false" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
+>>>>>>> Stashed changes
             <Label layoutX="50.0" layoutY="250.0" text="Rewiev" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="390.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+            <Button fx:id="btn" mnemonicParsing="false" onAction="#backToList" text="Back to list" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="550.0" />
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+    <AnchorPane minHeight="0.0" minWidth="300.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
          <children>
             <ImageView fx:id="imgOne" fitHeight="250.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="308.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
                <image>

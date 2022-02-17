@@ -9,7 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+
+import java.util.LinkedList;
 
 public class MainController {
 
@@ -20,9 +23,19 @@ public class MainController {
     public void clickOnListBook(ActionEvent event) throws Exception
     {
         Stage stage = (Stage)((Node)mainLabel).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("list-view.fxml"));
+        FXMLLoader root = new FXMLLoader(getClass().getResource("list-view.fxml"));
+        LinkedList<Book> listBook = new LinkedList<>();
+        for (int i = 0; i < 10; i++)
+        {
+            listBook.add(new Book("nameOfBook" + i, "authorOfBook" + i,
+                    "publishingOfHouse" + i, "isbn" + i, "review" + i,
+                    "annotationText" + i, "Harry.jpg", "Harry2.jpg", 5));
+        }
+        ListController controller = new ListController(listBook);
+        root.setController(controller);
+        TabPane pane = root.load();
+        Scene scene = new Scene(pane, 800, 600);
 
-        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
