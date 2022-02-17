@@ -3,18 +3,18 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-<<<<<<< Updated upstream
-=======
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
->>>>>>> Stashed changes
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +26,9 @@ public class ListController implements Initializable {
     private LinkedList<Book> listBook;
     @FXML
     private VBox vBoxRead;
+
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     private AnchorPane book;
@@ -52,13 +55,13 @@ public class ListController implements Initializable {
             pane.maxWidth(Region.USE_COMPUTED_SIZE);
             vBoxRead.getChildren().add(pane);
 
-            createChildrenAnchorElement(pane);
+            createChildrenAnchorElement(pane, i);
         }
     }
 
-    public void createChildrenAnchorElement(AnchorPane book)
+    public void createChildrenAnchorElement(AnchorPane book, int i)
     {
-        Label name_of_book = new Label("Name of Book1");
+        Label name_of_book = new Label("Name of Book");
         name_of_book.minWidth(100);
         name_of_book.minHeight(50);
         AnchorPane.setBottomAnchor(name_of_book,30.0);
@@ -66,9 +69,6 @@ public class ListController implements Initializable {
         AnchorPane.setRightAnchor(name_of_book,500.0);
         AnchorPane.setTopAnchor(name_of_book,10.0);
 
-<<<<<<< Updated upstream
-        Label name_of_author = new Label("Author1");
-=======
         Label curname_of_book = new Label(listBook.get(i).getNameOfBook());
         curname_of_book.minWidth(120);
         curname_of_book.minHeight(50);
@@ -80,7 +80,6 @@ public class ListController implements Initializable {
         Label name_of_author = new Label("Author");
         name_of_book.minWidth(100);
         name_of_book.minHeight(50);
->>>>>>> Stashed changes
         AnchorPane.setBottomAnchor(name_of_author,10.0);
         AnchorPane.setLeftAnchor(name_of_author,10.0);
         AnchorPane.setRightAnchor(name_of_author,514.0);
@@ -117,30 +116,32 @@ public class ListController implements Initializable {
         info.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                infoAboutBook();
+                try {
+                    infoAboutBook(i);
+                }
+                catch (Exception e)
+                {
+                    System.err.println(e.getLocalizedMessage());
+                }
             }
         });
 
         markAsRead.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
-                markAsRead();
-            }
+            public void handle(ActionEvent actionEvent) { markAsRead(i); }
         });
 
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                deleteBook();
+                deleteBook(i);
             }
         });
         System.out.println();
     }
 
-    public void infoAboutBook()
+    public void infoAboutBook(int index) throws Exception
     {
-<<<<<<< Updated upstream
-=======
         Stage stage = new Stage();
         FXMLLoader root = new FXMLLoader(getClass().getResource("info-view.fxml"));
         ViewController controller = new ViewController(
@@ -160,16 +161,15 @@ public class ListController implements Initializable {
         stage.setScene(scene);
         Stage main = (Stage)((Node)tabPane).getScene().getWindow();
         stage.showAndWait();
->>>>>>> Stashed changes
 
     }
 
-    public void markAsRead()
+    public void markAsRead(int index)
     {
 
     }
 
-    public void deleteBook()
+    public void deleteBook(int index)
     {
 
     }
