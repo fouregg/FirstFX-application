@@ -51,9 +51,7 @@ public class AddController extends MainController implements Initializable {
     @FXML
     Button btnImg2;
 
-    public AddController(LinkedList listOfBook) {
-        this.listOfBook = listOfBook;
-    }
+    public AddController() throws Exception {super();}
 
     @Override
     public void initialize(URL location, ResourceBundle resource)

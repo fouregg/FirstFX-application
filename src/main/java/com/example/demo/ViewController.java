@@ -2,11 +2,8 @@ package com.example.demo;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -20,17 +17,18 @@ public class ViewController extends MainController implements Initializable {
     StringProperty authorOfBook = new SimpleStringProperty();
     StringProperty annotationText = new SimpleStringProperty();
     StringProperty nameOfBook = new SimpleStringProperty();
-    StringProperty publishingofHouse = new SimpleStringProperty();
+    StringProperty publishingOfHouse = new SimpleStringProperty();
     StringProperty isbn = new SimpleStringProperty();
     StringProperty review = new SimpleStringProperty();
     StringProperty img1 = new SimpleStringProperty();
     StringProperty img2 = new SimpleStringProperty();
 
-    public ViewController(String annotationText, String nameOfBook, String authorOfBook, String publishingofHouse, String isbn, String review, String img1, String img2) {
+    public ViewController(String annotationText, String nameOfBook, String authorOfBook, String publishingOfHouse, String isbn, String review, String img1, String img2) throws Exception {
+        super();
         this.annotationText.set(annotationText);
         this.authorOfBook.set(authorOfBook);
         this.nameOfBook.set(nameOfBook);
-        this.publishingofHouse.set(publishingofHouse);
+        this.publishingOfHouse.set(publishingOfHouse);
         this.isbn.set(isbn);
         this.review.set(review);
         this.img1.set(img1);
@@ -68,11 +66,11 @@ public class ViewController extends MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource)
     {
-        Image image1 = new Image(img1.get());
-        Image image2 = new Image(img2.get());
+        Image image1 = new Image(img1.get().substring(1, img1.get().length()-1));
+        Image image2 = new Image(img2.get().substring(1, img2.get().length()-1));
         nameBook.setText(nameOfBook.get());
         authorBook.setText(authorOfBook.get());
-        publishingHouse.setText(publishingofHouse.get());
+        publishingHouse.setText(publishingOfHouse.get());
         ISBN.setText(isbn.get());
         annotation.setPrefColumnCount(2);
         annotation.setText(annotationText.get());

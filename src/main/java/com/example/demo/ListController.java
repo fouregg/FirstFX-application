@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -20,7 +17,6 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class ListController extends MainController implements Initializable {
-    private LinkedList<Book> listBook;
     @FXML
     private VBox vBoxRead;
 
@@ -30,15 +26,14 @@ public class ListController extends MainController implements Initializable {
     @FXML
     private AnchorPane book;
 
-    public ListController(LinkedList<Book> listBook) {
-
-        this.listBook = listBook;
+    public ListController() throws Exception {
+        super();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resource){
         System.out.println("Initialize");
-        final int countOfBook = 10;
+        final int countOfBook = listBook.size();
         final int heightElement = 60;
         vBoxRead.minHeight(heightElement * countOfBook);
         for (int i = 0; i < countOfBook; i++) {
@@ -109,32 +104,17 @@ public class ListController extends MainController implements Initializable {
 
         book.getChildren().addAll(name_of_book, curname_of_book, name_of_author, curname_of_author, hBox);
 
-
-        info.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    infoAboutBook(i);
-                }
-                catch (Exception e)
-                {
-                    System.err.println(e.getLocalizedMessage());
-                }
+        info.setOnAction(event ->  {
+            try {
+                infoAboutBook(i);
+            }
+            catch (Exception e)
+            {
+                System.err.println(e.getLocalizedMessage());
             }
         });
-
-        markAsRead.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) { markAsRead(i); }
-        });
-
-        delete.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                deleteBook(i);
-            }
-        });
-        System.out.println();
+        markAsRead.setOnAction(event -> markAsRead(i));
+        delete.setOnAction(event ->  deleteBook(i));
     }
 
     public void infoAboutBook(int index) throws Exception
