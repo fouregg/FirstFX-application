@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +12,6 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class ListController extends MainController implements Initializable {
@@ -128,6 +126,7 @@ public class ListController extends MainController implements Initializable {
                 listBook.get(index).getPublishingOfHouse(),
                 listBook.get(index).getIsbn(),
                 listBook.get(index).getReview(),
+                listBook.get(index).getRate(),
                 listBook.get(index).getImg1(),
                 listBook.get(index).getImg2()
                 );
@@ -136,7 +135,6 @@ public class ListController extends MainController implements Initializable {
 
         Scene scene = new Scene(splitPane, 800, 600);
         stage.setScene(scene);
-        Stage main = (Stage)((Node)tabPane).getScene().getWindow();
         stage.showAndWait();
 
     }
@@ -148,6 +146,14 @@ public class ListController extends MainController implements Initializable {
 
     public void deleteBook(int index)
     {
-
+        listBook.remove(index);
+        addInCSV();
+        try {
+            clickOnListBook();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }

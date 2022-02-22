@@ -27,17 +27,13 @@ public class Book {
         return nameOfBook;
     }
 
-    public void setNameOfBook(String nameOfBook) {
-        this.nameOfBook = nameOfBook;
-    }
+    public void setNameOfBook(String nameOfBook) { this.nameOfBook = nameOfBook; }
 
     public String getAuthorOfBook() {
         return authorOfBook;
     }
 
-    public void setAuthorOfBook(String authorOfBook) {
-        this.authorOfBook = authorOfBook;
-    }
+    public void setAuthorOfBook(String authorOfBook) { this.authorOfBook = authorOfBook; }
 
     public String getPublishingOfHouse() {
         return publishingOfHouse;
@@ -91,7 +87,7 @@ public class Book {
         this.rate = rate;
     }
 
-    public float getRate() {
+    public int getRate() {
         return this.rate;
     }
 }

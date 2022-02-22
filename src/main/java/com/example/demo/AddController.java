@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -16,12 +14,9 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class AddController extends MainController implements Initializable {
-
-    private LinkedList listOfBook;
     private String img1, img2;
 
     @FXML
@@ -56,58 +51,29 @@ public class AddController extends MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource)
     {
-        btnImg1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) { addImg(); }
-        });
-        btnImg2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) { addImg(); }
-        });
+        btnImg1.setOnAction(event ->  addImg());
+        btnImg2.setOnAction(event ->  addImg());
     }
 
     public void addImg()
     {
         final FileChooser fileChooser = new FileChooser();
-        TextArea textArea = new TextArea();
-        textArea.setMinHeight(70);
-        Button button1 = new Button("Select file");
+        File file = fileChooser.showOpenDialog(btnImg1.getScene().getWindow());
+        if (file != null)
+        {
+            if (img1 == null || img1.equals("") ) img1 = file.getAbsolutePath();
 
-        button1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                textArea.clear();
-                File file = fileChooser.showOpenDialog(btnImg1.getScene().getWindow());
-                if (file != null)
-                {
-                    if (this.equals(btnImg1)) {
-                        img1 = file.getAbsolutePath();
-                        System.out.println(img1);
-                    }
-                    else {
-                        img2 = file.getAbsolutePath();
-                        System.out.println(img2);
-                    }
-                }
-                else
-                {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("File is empty!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("File is empty!");
-                }
-            }
-        });
-
-        VBox root = new VBox();
-        root.setPadding(new Insets(10));
-        root.setSpacing(5);
-        root.getChildren().addAll(textArea, button1);
-
-        Scene scene = new Scene(root, 400, 400);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.showAndWait();
+            else img2 = file.getAbsolutePath();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("File is empty!");
+            alert.setHeaderText(null);
+            alert.setContentText("File is empty!");
+        }
+        System.out.println(img1);
+        System.out.println(img2);
     }
     public void addBook()
     {
@@ -125,6 +91,8 @@ public class AddController extends MainController implements Initializable {
                     img2,
                     r
                     );
+            listBook.add(book);
+            addInCSV();
         }
         catch (Exception e)
         {
@@ -134,4 +102,5 @@ public class AddController extends MainController implements Initializable {
             alert.setContentText("In rate wrote not number!");
         }
     }
+
 }

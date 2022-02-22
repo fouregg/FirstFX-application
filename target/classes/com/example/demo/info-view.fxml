@@ -17,7 +17,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Add Book" onAction="#clickOnAddBook" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickOnAddBook" text="Add Book" />
                   <MenuItem mnemonicParsing="false" text="Search" />
                </items>
             </Menu>
@@ -93,6 +93,11 @@
                      </font>
                   </Label>
                   <Button fx:id="btn" mnemonicParsing="false" onAction="#backToList" text="Back to list" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="540.0" />
+                  <Label fx:id="rateLabel" layoutX="100.0" layoutY="170.0" text="-" textFill="#d10a0a" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="200.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="300.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>

@@ -15,7 +15,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#clickOnAddBook" text="Add Book" />
+                        <MenuItem mnemonicParsing="false" onAction="#addBook" text="Add Book" />
                         <MenuItem mnemonicParsing="false" text="Search" />
                     </items>
                 </Menu>
@@ -31,7 +31,7 @@
         </MenuBar>
             <AnchorPane minHeight="400.0" minWidth="500.0" prefHeight="160.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" SplitPane.resizableWithParent="false">
                 <children>
-                    <TextArea fx:id="annotation" editable="false" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" scrollTop="1.0" wrapText="true" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0" />
+                    <TextArea fx:id="annotation" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" scrollTop="1.0" wrapText="true" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0" />
                     <Label text="NameBook" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
                         <font>
                             <Font size="18.0" />
@@ -82,7 +82,7 @@
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <TextArea fx:id="reviewArea" editable="false" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
+                    <TextArea fx:id="reviewArea" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
                     <Label layoutX="50.0" layoutY="250.0" text="Rewiev" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="390.0">
                         <font>
                             <Font size="18.0" />

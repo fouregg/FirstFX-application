@@ -22,8 +22,9 @@ public class ViewController extends MainController implements Initializable {
     StringProperty review = new SimpleStringProperty();
     StringProperty img1 = new SimpleStringProperty();
     StringProperty img2 = new SimpleStringProperty();
+    int rate;
 
-    public ViewController(String annotationText, String nameOfBook, String authorOfBook, String publishingOfHouse, String isbn, String review, String img1, String img2) throws Exception {
+    public ViewController(String annotationText, String nameOfBook, String authorOfBook, String publishingOfHouse, String isbn, String review, int rate, String img1, String img2) throws Exception {
         super();
         this.annotationText.set(annotationText);
         this.authorOfBook.set(authorOfBook);
@@ -31,6 +32,7 @@ public class ViewController extends MainController implements Initializable {
         this.publishingOfHouse.set(publishingOfHouse);
         this.isbn.set(isbn);
         this.review.set(review);
+        this.rate = rate;
         this.img1.set(img1);
         this.img2.set(img2);
     }
@@ -62,7 +64,7 @@ public class ViewController extends MainController implements Initializable {
     @FXML
     private ImageView imgTwo;
     @FXML
-
+    private Label rateLabel;
     @Override
     public void initialize(URL location, ResourceBundle resource)
     {
@@ -75,6 +77,7 @@ public class ViewController extends MainController implements Initializable {
         annotation.setPrefColumnCount(2);
         annotation.setText(annotationText.get());
         reviewArea.setText(review.get());
+        rateLabel.setText(String.valueOf(rate));
         imgOne.setImage(image1);
         imgTwo.setImage(image2);
     }

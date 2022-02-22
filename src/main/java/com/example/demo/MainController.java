@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -13,8 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MainController {
-    LinkedList<Book> listBook;
-    String pathCSV = "C:\\FirstFX-application\\src\\main\\resources\\data.csv";
+    static LinkedList<Book> listBook;
+    static String pathCSV = "C:\\FirstFX-application\\src\\main\\resources\\data.csv";
 
     public MainController() throws Exception {
       listBook = ParseCSV(pathCSV);
@@ -53,6 +56,40 @@ public class MainController {
         System.out.println(trimText.indexOf("\"") + " " + trimText.lastIndexOf("\""));
         //Если в тексте одна ковычка или текст на неё заканчивается, то это часть предыдушей колонки
         return trimText.indexOf("\"") == trimText.lastIndexOf("\"");
+    }
+
+    private static String deleteQuotes(String text)
+    {
+        while (text.charAt(0) == '\"' && text.charAt(text.length()-1)=='\"')
+        {
+            text = text.replaceFirst("\"", "");
+            text = text.substring(0,text.length()-1);
+        }
+        return text;
+    }
+
+    public static boolean addInCSV()
+    {
+        try (PrintWriter writer = new PrintWriter(pathCSV)){
+            for (Book book : listBook) {
+                String line = "";
+                line += "\"" + deleteQuotes(book.getNameOfBook()) + "\";";
+                line += "\"" + deleteQuotes(book.getAuthorOfBook()) + "\";";
+                line += "\"" + deleteQuotes(book.getPublishingOfHouse()) + "\";";
+                line += "\"" + deleteQuotes(book.getIsbn()) + "\";";
+                line += "\"" + deleteQuotes(book.getReview()) + "\";";
+                line += "\"" + deleteQuotes(book.getAnnotationText()) + "\";";
+                line += "\"" + deleteQuotes(book.getImg1()) + "\";";
+                line += "\"" + deleteQuotes(book.getImg2()) + "\";";
+                line += "\"" + deleteQuotes(String.valueOf(book.getRate())) + "\"";
+                line += "\n";
+                writer.write(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @FXML
