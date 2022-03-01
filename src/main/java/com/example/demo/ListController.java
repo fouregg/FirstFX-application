@@ -5,18 +5,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListController extends MainController implements Initializable {
     @FXML
     private VBox vBoxRead;
+
+    @FXML
+    private VBox vBoxReading;
+
+    @FXML
+    private VBox vBoxWillRead;
 
     @FXML
     private TabPane tabPane;
@@ -30,11 +37,15 @@ public class ListController extends MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource){
-        System.out.println("Initialize");
         final int countOfBook = listBook.size();
         final int heightElement = 60;
+
         vBoxRead.minHeight(heightElement * countOfBook);
+        vBoxWillRead.minHeight(heightElement * countOfBook);
+        vBoxReading.minHeight(heightElement * countOfBook);
         for (int i = 0; i < countOfBook; i++) {
+            Book curBook = listBook.get(i);
+
             AnchorPane pane = new AnchorPane();
 
             pane.setMinHeight(40);
@@ -43,14 +54,21 @@ public class ListController extends MainController implements Initializable {
             pane.prefHeight(heightElement);
             pane.minWidth(Region.USE_COMPUTED_SIZE);
             pane.maxWidth(Region.USE_COMPUTED_SIZE);
-            vBoxRead.getChildren().add(pane);
-
+            switch (curBook.getState()){
+                case READ -> {vBoxRead.getChildren().add(pane);
+                    System.out.println("Read case");}
+                case READING -> {vBoxReading.getChildren().add(pane);
+                    System.out.println("Reading case");}
+                case WILL_READ -> {vBoxWillRead.getChildren().add(pane);
+                    System.out.println("Will read");}
+            }
             createChildrenAnchorElement(pane, i);
         }
     }
 
     public void createChildrenAnchorElement(AnchorPane book, int i)
     {
+        Book curBook = listBook.get(i);
         Label name_of_book = new Label("Name of Book");
         name_of_book.minWidth(100);
         name_of_book.minHeight(50);
@@ -59,7 +77,7 @@ public class ListController extends MainController implements Initializable {
         AnchorPane.setRightAnchor(name_of_book,500.0);
         AnchorPane.setTopAnchor(name_of_book,10.0);
 
-        Label curname_of_book = new Label(listBook.get(i).getNameOfBook());
+        Label curname_of_book = new Label(curBook.getNameOfBook());
         curname_of_book.minWidth(120);
         curname_of_book.minHeight(50);
         AnchorPane.setBottomAnchor(curname_of_book,30.0);
@@ -75,7 +93,7 @@ public class ListController extends MainController implements Initializable {
         AnchorPane.setRightAnchor(name_of_author,514.0);
         AnchorPane.setTopAnchor(name_of_author,30.0);
 
-        Label curname_of_author = new Label(listBook.get(i).getAuthorOfBook());
+        Label curname_of_author = new Label(curBook.getAuthorOfBook());
         curname_of_book.minWidth(120);
         curname_of_book.minHeight(50);
         AnchorPane.setBottomAnchor(curname_of_author,10.0);
@@ -84,13 +102,62 @@ public class ListController extends MainController implements Initializable {
         AnchorPane.setTopAnchor(curname_of_author,30.0);
 
         Button info = new Button("info");
-        Button markAsRead = new Button("mark as read");
         Button delete = new Button("Delete");
+
+        InputStream input = HelloApplication.class.getResourceAsStream("icon-done.png");
+        Image imgIcon1 = new Image(input);
+        input = HelloApplication.class.getResourceAsStream("icon-open-book.png");
+        Image imgIcon2 = new Image(input);
+        input = HelloApplication.class.getResourceAsStream("will-read-icon.png");
+        Image imgIcon3 = new Image(input);
+
+        ImageView imageView1 = new ImageView(imgIcon1);
+        ImageView imageView2 = new ImageView(imgIcon2);
+        ImageView imageView3 = new ImageView(imgIcon3);
+        ImageView imageViewMain = new ImageView();
+
+        MenuItem menuItem1 = new MenuItem("Read", imageView1);
+        menuItem1.setOnAction(event -> {
+            Book tmp = listBook.get(i);
+            tmp.setState(Book.State.READ);
+            listBook.set(i,tmp);
+            addInCSV();
+            try {
+                clickOnListBook();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        MenuItem menuItem2 = new MenuItem("Reading", imageView2);
+        menuItem2.setOnAction(event -> {
+            Book tmp = listBook.get(i);
+            tmp.setState(Book.State.READING);
+            listBook.set(i,tmp);
+            addInCSV();
+            try {
+                clickOnListBook();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        MenuItem menuItem3 = new MenuItem("Will Read", imageView3);
+        menuItem3.setOnAction(event -> {
+            Book tmp = listBook.get(i);
+            tmp.setState(Book.State.WILL_READ);
+            listBook.set(i,tmp);
+            addInCSV();
+            try {
+                clickOnListBook();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        MenuButton markAsRead = new MenuButton("Choise mark", imageViewMain, menuItem1, menuItem2, menuItem3);
 
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         hBox.setMinHeight(200);
-        hBox.setMinWidth(350);
+        hBox.setMinWidth(300);
         hBox.setMaxHeight(200);
         hBox.setMaxWidth(350);
         hBox.setSpacing(20);

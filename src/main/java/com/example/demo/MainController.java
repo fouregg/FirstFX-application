@@ -42,7 +42,8 @@ public class MainController {
                 Book book = new Book(
                                     column.get(0), column.get(1), column.get(2),column.get(3),
                                     column.get(4), column.get(5), column.get(6), column.get(7),
-                                    Integer.parseInt(column.get(8).substring(1,column.get(8).length()-1))
+                                    Integer.parseInt(column.get(8).substring(1,column.get(8).length()-1)),
+                                    column.get(9).substring(1, column.get(9).length()-1)
                                     );
                 books.add(book);
         }
@@ -52,8 +53,6 @@ public class MainController {
     private static boolean CheckColumn(String text)
     {
         String trimText = text.trim();
-        System.out.println(trimText);
-        System.out.println(trimText.indexOf("\"") + " " + trimText.lastIndexOf("\""));
         //Если в тексте одна ковычка или текст на неё заканчивается, то это часть предыдушей колонки
         return trimText.indexOf("\"") == trimText.lastIndexOf("\"");
     }
@@ -81,7 +80,8 @@ public class MainController {
                 line += "\"" + deleteQuotes(book.getAnnotationText()) + "\";";
                 line += "\"" + deleteQuotes(book.getImg1()) + "\";";
                 line += "\"" + deleteQuotes(book.getImg2()) + "\";";
-                line += "\"" + deleteQuotes(String.valueOf(book.getRate())) + "\"";
+                line += "\"" + deleteQuotes(String.valueOf(book.getRate())) + "\";";
+                line += "\"" + deleteQuotes(String.valueOf(book.getState())) + "\"";
                 line += "\n";
                 writer.write(line);
             }

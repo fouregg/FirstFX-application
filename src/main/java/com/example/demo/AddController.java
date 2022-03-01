@@ -72,8 +72,6 @@ public class AddController extends MainController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("File is empty!");
         }
-        System.out.println(img1);
-        System.out.println(img2);
     }
     public void addBook()
     {
@@ -89,7 +87,8 @@ public class AddController extends MainController implements Initializable {
                     annotation.getText(),
                     img1,
                     img2,
-                    r
+                    r,
+                    "will_read"
                     );
             listBook.add(book);
             addInCSV();

@@ -39,13 +39,16 @@
       </Tab>
       <Tab text="Will read">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <ScrollPane fx:id="scrollPaneWillRead" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
+            <VBox fx:id="vBoxWillRead" />
+          </ScrollPane>
         </content>
       </Tab>
       <Tab text="Reading">
         <content>
-          <ListView minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-
+          <ScrollPane fx:id="scrollPaneReading" hbarPolicy="NEVER" vbarPolicy="ALWAYS">
+            <VBox fx:id="vBoxReading" />
+          </ScrollPane>
         </content>
       </Tab>
     </tabs>

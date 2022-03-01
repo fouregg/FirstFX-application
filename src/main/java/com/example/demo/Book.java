@@ -11,7 +11,15 @@ public class Book {
     private String img2;
     private int rate;
 
-    public Book(String nameOfBook, String authorOfBook, String publishingOfHouse, String isbn, String review, String annotationText, String img1, String img2, int rate) {
+    enum State{
+        READ,
+        WILL_READ,
+        READING
+    }
+
+    private State state;
+
+    public Book(String nameOfBook, String authorOfBook, String publishingOfHouse, String isbn, String review, String annotationText, String img1, String img2, int rate,  String state) {
         this.nameOfBook = nameOfBook;
         this.authorOfBook = authorOfBook;
         this.publishingOfHouse = publishingOfHouse;
@@ -21,6 +29,20 @@ public class Book {
         this.img1 = img1;
         this.img2 = img2;
         this.rate = rate;
+        switch (state) {
+            case "READ":
+                this.state = State.READ;
+                break;
+            case "WILL_READ":
+                this.state = State.WILL_READ;
+                break;
+            case "READING":
+                this.state = State.READING;
+                break;
+            default:
+                System.out.println(state);
+                this.state = State.WILL_READ;
+        }
     }
 
     public String getNameOfBook() {
@@ -90,4 +112,8 @@ public class Book {
     public int getRate() {
         return this.rate;
     }
+
+    public State getState() { return this.state; }
+
+    public void setState(State state) { this.state = state; }
 }
