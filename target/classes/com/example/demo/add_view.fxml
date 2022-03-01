@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="listBook" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="listBook" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="28.0" prefWidth="800.0" AnchorPane.bottomAnchor="575.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="28.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -21,9 +22,9 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="List Book">
                     <items>
-                        <MenuItem fx:id="MenuItems" mnemonicParsing="false" onAction="#clickOnListBook" text="Read" />
-                        <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Will read" />
-                        <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Reading" />
+                        <MenuItem fx:id="MenuItems" mnemonicParsing="false" onAction="#clickOnReadBook" text="Read" />
+                        <MenuItem mnemonicParsing="false" onAction="#clickOnWillReadBook" text="Will read" />
+                        <MenuItem mnemonicParsing="false" onAction="#clickOnReadingBook" text="Reading" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Statistic" />
@@ -31,8 +32,8 @@
         </MenuBar>
             <AnchorPane minHeight="400.0" minWidth="500.0" prefHeight="160.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" SplitPane.resizableWithParent="false">
                 <children>
-                    <TextArea fx:id="annotation" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" scrollTop="1.0" wrapText="true" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0" />
-                    <Label text="NameBook" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
+                    <TextArea fx:id="annotation" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" scrollTop="1.0" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0" />
+                    <Label minWidth="100.0" text="NameBook" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="40.0">
                         <font>
                             <Font size="18.0" />
                         </font>
@@ -42,7 +43,7 @@
                             <Font size="18.0" />
                         </font>
                     </TextField>
-                    <Label layoutX="50.0" layoutY="50.0" text="Author" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="80.0">
+                    <Label layoutX="50.0" layoutY="50.0" minWidth="100.0" text="Author" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="80.0">
                         <font>
                             <Font size="18.0" />
                         </font>
@@ -52,7 +53,7 @@
                             <Font size="18.0" />
                         </font>
                     </TextField>
-                    <Label layoutX="50.0" layoutY="90.0" text="publishing house" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="120.0">
+                    <Label layoutX="50.0" layoutY="90.0" minWidth="100.0" text="publishing house" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="120.0">
                         <font>
                             <Font size="18.0" />
                         </font>
@@ -62,7 +63,7 @@
                             <Font size="18.0" />
                         </font>
                     </TextField>
-                    <Label layoutX="50.0" layoutY="130.0" text="ISBN" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
+                    <Label layoutX="50.0" layoutY="130.0" minWidth="100.0" text="ISBN" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="160.0">
                         <font>
                             <Font size="18.0" />
                         </font>
@@ -72,30 +73,46 @@
                             <Font size="18.0" />
                         </font>
                     </TextField>
-                    <Label layoutX="50.0" layoutY="170.0" text="Rate" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
+                    <Label layoutX="50.0" layoutY="170.0" minHeight="50.0" minWidth="100.0" prefWidth="100.0" text="Rate" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="200.0">
                         <font>
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <Label layoutX="50.0" layoutY="210.0" text="Annotation" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="240.0">
+                    <Label layoutX="50.0" layoutY="210.0" text="Annotation" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="240.0">
                         <font>
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <TextArea fx:id="reviewArea" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
-                    <Label layoutX="50.0" layoutY="250.0" text="Rewiev" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="390.0">
+                    <TextArea fx:id="reviewArea" layoutX="50.0" layoutY="290.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="420.0" />
+                    <Label layoutX="50.0" layoutY="250.0" text="Rewiev" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="390.0">
                         <font>
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <Button fx:id="btn" mnemonicParsing="false" onAction="#addBook" text="Add book" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="540.0" />
             <TextField fx:id="rate" layoutX="486.0" layoutY="170.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Button fx:id="btnImg1" layoutX="310.0" layoutY="550.0" mnemonicParsing="false" text="add first image" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="604.0" />
-            <Button fx:id="btnImg2" layoutX="110.0" layoutY="550.0" mnemonicParsing="false" text="add second image" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="100.0" />
+            <HBox spacing="30.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="530.0">
+               <children>
+                  <Button fx:id="btnImg2" mnemonicParsing="false" text="add second image">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                          <Button fx:id="btn" mnemonicParsing="false" onAction="#addBook" text="Add book">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnImg1" mnemonicParsing="false" text="add first image">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
                 </children>
             </AnchorPane>
     </children>

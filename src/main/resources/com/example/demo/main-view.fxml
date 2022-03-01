@@ -19,11 +19,11 @@
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="List Book">
-               <items>
-                  <MenuItem fx:id="MenuItems" mnemonicParsing="false" onAction="#clickOnListBook" text="Read" />
-                  <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Will read" />
-                  <MenuItem mnemonicParsing="false" onAction="#clickOnListBook" text="Reading" />
-               </items>
+                <items>
+                    <MenuItem fx:id="MenuItems" mnemonicParsing="false" onAction="#clickOnReadBook" text="Read" />
+                    <MenuItem mnemonicParsing="false" onAction="#clickOnWillReadBook" text="Will read" />
+                    <MenuItem mnemonicParsing="false" onAction="#clickOnReadingBook" text="Reading" />
+                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Statistic" />
         </menus>

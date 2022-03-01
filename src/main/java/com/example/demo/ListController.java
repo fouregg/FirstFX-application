@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListController extends MainController implements Initializable {
+    private int indexTab = 0;
     @FXML
     private VBox vBoxRead;
 
@@ -35,11 +36,18 @@ public class ListController extends MainController implements Initializable {
         super();
     }
 
+    public ListController(int i) throws Exception
+    {
+        super();
+        indexTab = i;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resource){
         final int countOfBook = listBook.size();
         final int heightElement = 60;
-
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(indexTab);
         vBoxRead.minHeight(heightElement * countOfBook);
         vBoxWillRead.minHeight(heightElement * countOfBook);
         vBoxReading.minHeight(heightElement * countOfBook);
@@ -123,7 +131,7 @@ public class ListController extends MainController implements Initializable {
             listBook.set(i,tmp);
             addInCSV();
             try {
-                clickOnListBook();
+                clickOnListBook(0);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -135,7 +143,7 @@ public class ListController extends MainController implements Initializable {
             listBook.set(i,tmp);
             addInCSV();
             try {
-                clickOnListBook();
+                clickOnListBook(1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -147,7 +155,7 @@ public class ListController extends MainController implements Initializable {
             listBook.set(i,tmp);
             addInCSV();
             try {
-                clickOnListBook();
+                clickOnListBook(2);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -178,7 +186,6 @@ public class ListController extends MainController implements Initializable {
                 System.err.println(e.getLocalizedMessage());
             }
         });
-        markAsRead.setOnAction(event -> markAsRead(i));
         delete.setOnAction(event ->  deleteBook(i));
     }
 
@@ -206,17 +213,12 @@ public class ListController extends MainController implements Initializable {
 
     }
 
-    public void markAsRead(int index)
-    {
-
-    }
-
     public void deleteBook(int index)
     {
         listBook.remove(index);
         addInCSV();
         try {
-            clickOnListBook();
+            clickOnListBook(tabPane.getSelectionModel().getSelectedIndex());
         }
         catch (Exception e)
         {

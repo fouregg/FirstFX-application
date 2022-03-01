@@ -95,12 +95,31 @@ public class MainController {
     @FXML
     public MenuBar menuBar;
 
+
     @FXML
-    public void clickOnListBook() throws Exception
+    public void clickOnReadingBook() throws Exception
     {
+        clickOnListBook(2);
+    }
+
+    @FXML
+    public void clickOnReadBook() throws Exception
+    {
+        clickOnListBook(0);
+    }
+
+    @FXML
+    public void clickOnWillReadBook() throws Exception
+    {
+        clickOnListBook(1);
+    }
+
+    public void clickOnListBook(int i) throws Exception
+    {
+        System.out.println(Thread.currentThread().getStackTrace()[2]);
         Stage stage = (Stage)(menuBar).getScene().getWindow();
         FXMLLoader root = new FXMLLoader(getClass().getResource("list-view.fxml"));
-        ListController controller = new ListController();
+        ListController controller = new ListController(i);
         root.setController(controller);
         AnchorPane pane = root.load();
         Scene scene = new Scene(pane, 800, 600);
