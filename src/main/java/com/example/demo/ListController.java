@@ -1,5 +1,6 @@
 package com.example.demo;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,10 +14,13 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ListController extends MainController implements Initializable {
     private int indexTab = 0;
+
     @FXML
     private VBox vBoxRead;
 
@@ -32,46 +36,25 @@ public class ListController extends MainController implements Initializable {
     @FXML
     private AnchorPane book;
 
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private AnchorPane listBookPane;
+
     public ListController() throws Exception {
         super();
+        MainController.ParseCSV(MainController.pathCSV);
     }
 
-    public ListController(int i) throws Exception
-    {
+    public ListController(int i) throws Exception {
         super();
         indexTab = i;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resource){
-        final int countOfBook = listBook.size();
-        final int heightElement = 60;
-        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-        selectionModel.select(indexTab);
-        vBoxRead.minHeight(heightElement * countOfBook);
-        vBoxWillRead.minHeight(heightElement * countOfBook);
-        vBoxReading.minHeight(heightElement * countOfBook);
-        for (int i = 0; i < countOfBook; i++) {
-            Book curBook = listBook.get(i);
-
-            AnchorPane pane = new AnchorPane();
-
-            pane.setMinHeight(40);
-            pane.setMaxHeight(heightElement);
-            pane.prefWidth(800);
-            pane.prefHeight(heightElement);
-            pane.minWidth(Region.USE_COMPUTED_SIZE);
-            pane.maxWidth(Region.USE_COMPUTED_SIZE);
-            switch (curBook.getState()){
-                case READ -> {vBoxRead.getChildren().add(pane);
-                    System.out.println("Read case");}
-                case READING -> {vBoxReading.getChildren().add(pane);
-                    System.out.println("Reading case");}
-                case WILL_READ -> {vBoxWillRead.getChildren().add(pane);
-                    System.out.println("Will read");}
-            }
-            createChildrenAnchorElement(pane, i);
-        }
+        generateList(listBook);
     }
 
     public void createChildrenAnchorElement(AnchorPane book, int i)
@@ -127,7 +110,7 @@ public class ListController extends MainController implements Initializable {
         MenuItem menuItem1 = new MenuItem("Read", imageView1);
         menuItem1.setOnAction(event -> {
             Book tmp = listBook.get(i);
-            tmp.setState(Book.State.READ);
+            tmp.setState(State.READ);
             listBook.set(i,tmp);
             addInCSV();
             try {
@@ -139,7 +122,7 @@ public class ListController extends MainController implements Initializable {
         MenuItem menuItem2 = new MenuItem("Reading", imageView2);
         menuItem2.setOnAction(event -> {
             Book tmp = listBook.get(i);
-            tmp.setState(Book.State.READING);
+            tmp.setState(State.READING);
             listBook.set(i,tmp);
             addInCSV();
             try {
@@ -151,7 +134,7 @@ public class ListController extends MainController implements Initializable {
         MenuItem menuItem3 = new MenuItem("Will Read", imageView3);
         menuItem3.setOnAction(event -> {
             Book tmp = listBook.get(i);
-            tmp.setState(Book.State.WILL_READ);
+            tmp.setState(State.WILL_READ);
             listBook.set(i,tmp);
             addInCSV();
             try {
@@ -161,6 +144,7 @@ public class ListController extends MainController implements Initializable {
             }
         });
         MenuButton markAsRead = new MenuButton("Choise mark", imageViewMain, menuItem1, menuItem2, menuItem3);
+
 
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
@@ -173,7 +157,13 @@ public class ListController extends MainController implements Initializable {
         AnchorPane.setLeftAnchor(hBox,500.0);
         AnchorPane.setRightAnchor(hBox,20.0);
         AnchorPane.setTopAnchor(hBox,10.0);
+
+        markAsRead.setStyle("-fx-background-color: #F2E7DC; -fx-text-fill: #0D0D0D;");
+        info.setStyle("-fx-background-color: #F2E7DC; -fx-text-fill: #0D0D0D;");
+        delete.setStyle("-fx-background-color: #F2E7DC; -fx-text-fill: #0D0D0D;");
         hBox.getChildren().addAll(info, markAsRead, delete);
+
+
 
         book.getChildren().addAll(name_of_book, curname_of_book, name_of_author, curname_of_author, hBox);
 
@@ -187,6 +177,48 @@ public class ListController extends MainController implements Initializable {
             }
         });
         delete.setOnAction(event ->  deleteBook(i));
+    }
+
+    private void clearVBoxInList()
+    {
+        for (int i = 0; i < 3; i++) {
+            Tab tmp = tabPane.getTabs().get(i);
+            ScrollPane t = (ScrollPane) tmp.getContent();
+            VBox childrenScroll = (VBox) t.getContent();
+            childrenScroll.getChildren().clear();
+        }
+    }
+    private void generateList(LinkedList<Book> list)
+    {
+        clearVBoxInList();
+        final int countOfBook = list.size();
+        final int heightElement = 60;
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(indexTab);
+        vBoxRead.minHeight(heightElement * countOfBook);
+        vBoxWillRead.minHeight(heightElement * countOfBook);
+        vBoxReading.minHeight(heightElement * countOfBook);
+        for (int i = 0; i < countOfBook; i++) {
+            Book curBook = list.get(i);
+
+            AnchorPane pane = new AnchorPane();
+
+            pane.setMinHeight(40);
+            pane.setMaxHeight(heightElement);
+            pane.prefWidth(800);
+            pane.prefHeight(heightElement);
+            pane.minWidth(Region.USE_COMPUTED_SIZE);
+            pane.maxWidth(Region.USE_COMPUTED_SIZE);
+            switch (curBook.getState()){
+                case READ -> {vBoxRead.getChildren().add(pane);
+                    System.out.println("Read case");}
+                case READING -> {vBoxReading.getChildren().add(pane);
+                    System.out.println("Reading case");}
+                case WILL_READ -> {vBoxWillRead.getChildren().add(pane);
+                    System.out.println("Will read");}
+            }
+            createChildrenAnchorElement(pane, i);
+        }
     }
 
     public void infoAboutBook(int index) throws Exception
@@ -223,6 +255,31 @@ public class ListController extends MainController implements Initializable {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void buttonSearchBook()
+    {
+        searchField.setVisible(true);
+    }
+
+    public void searchBook()
+    {
+        indexTab = tabPane.getSelectionModel().getSelectedIndex();
+        System.out.println(searchField.getText());
+        if (searchField.getText().equals(""))
+        {
+            generateList(listBook);
+        }
+        else
+        {
+            String search = searchField.getText();
+            LinkedList<Book> searchList = new LinkedList<>();
+            for (Book cur : listBook) {
+                if (cur.getNameOfBook().toLowerCase(Locale.ROOT).contains(search.toLowerCase(Locale.ROOT)))
+                    searchList.add(cur);
+            }
+            generateList(searchList);
         }
     }
 }

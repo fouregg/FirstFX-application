@@ -62,7 +62,6 @@ public class AddController extends MainController implements Initializable {
         if (file != null)
         {
             if (img1 == null || img1.equals("") ) img1 = file.getAbsolutePath();
-
             else img2 = file.getAbsolutePath();
         }
         else

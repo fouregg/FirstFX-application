@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="listBook" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="listBook" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: A9D9D0;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="28.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="28.0" prefWidth="800.0" style="-fx-background-color: A9D9D0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -17,7 +17,6 @@
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#addBook" text="Add Book" />
-                        <MenuItem mnemonicParsing="false" text="Search" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="List Book">
@@ -30,7 +29,7 @@
                 <Menu mnemonicParsing="false" text="Statistic" />
             </menus>
         </MenuBar>
-            <AnchorPane minHeight="400.0" minWidth="500.0" prefHeight="160.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" SplitPane.resizableWithParent="false">
+            <AnchorPane minHeight="400.0" minWidth="500.0" prefHeight="160.0" prefWidth="0.0" style="-fx-background-color: F2E7DC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" SplitPane.resizableWithParent="false">
                 <children>
                     <TextArea fx:id="annotation" maxWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" scrollTop="1.0" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="280.0" />
                     <Label minWidth="100.0" text="NameBook" textFill="#d10a0a" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="40.0">

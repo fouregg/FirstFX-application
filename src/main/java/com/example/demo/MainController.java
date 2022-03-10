@@ -2,6 +2,7 @@ package com.example.demo;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -15,39 +16,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainController {
+public class MainController{
     static LinkedList<Book> listBook;
-    static String pathCSV = "C:\\FirstFX-application\\src\\main\\resources\\data.csv";
+    public static String pathCSV = "C:\\FirstFX-application\\src\\main\\resources\\data.csv";
 
-    public MainController() throws Exception {
-      listBook = ParseCSV(pathCSV);
-    }
+    @FXML
+    public MenuBar menuBar;
 
-    private static LinkedList<Book> ParseCSV(String path) throws Exception
-    {
-        LinkedList<Book> books = new LinkedList();
-        List<String> lines = Files.readAllLines(Paths.get(path));
-        for (String line : lines)
-        {
-            String[] splited = line.split(";");
-            ArrayList<String> column = new ArrayList<>();
-            for (String s : splited) {
-                if (CheckColumn(s)) {
-                    String lastText = column.get(column.size());
-                    column.set(column.size() - 1, lastText + ";" + s);
-                } else {
-                    column.add(s);
-                }
-            }
-                Book book = new Book(
-                                    column.get(0), column.get(1), column.get(2),column.get(3),
-                                    column.get(4), column.get(5), column.get(6), column.get(7),
-                                    Integer.parseInt(column.get(8).substring(1,column.get(8).length()-1)),
-                                    column.get(9).substring(1, column.get(9).length()-1)
-                                    );
-                books.add(book);
-        }
-        return books;
+    public MainController() throws Exception  {
+        listBook = ParseCSV(pathCSV);
     }
 
     private static boolean CheckColumn(String text)
@@ -92,9 +69,32 @@ public class MainController {
         return true;
     }
 
-    @FXML
-    public MenuBar menuBar;
-
+    public static LinkedList<Book> ParseCSV(String path) throws Exception
+    {
+        LinkedList<Book> books = new LinkedList();
+        List<String> lines = Files.readAllLines(Paths.get(path));
+        for (String line : lines)
+        {
+            String[] splited = line.split(";");
+            ArrayList<String> column = new ArrayList<>();
+            for (String s : splited) {
+                if (CheckColumn(s)) {
+                    String lastText = column.get(column.size());
+                    column.set(column.size() - 1, lastText + ";" + s);
+                } else {
+                    column.add(s);
+                }
+            }
+            Book book = new Book(
+                    column.get(0), column.get(1), column.get(2),column.get(3),
+                    column.get(4), column.get(5), column.get(6), column.get(7),
+                    Integer.parseInt(column.get(8).substring(1,column.get(8).length()-1)),
+                    column.get(9).substring(1, column.get(9).length()-1)
+            );
+            books.add(book);
+        }
+        return books;
+    }
 
     @FXML
     public void clickOnReadingBook() throws Exception
@@ -116,7 +116,6 @@ public class MainController {
 
     public void clickOnListBook(int i) throws Exception
     {
-        System.out.println(Thread.currentThread().getStackTrace()[2]);
         Stage stage = (Stage)(menuBar).getScene().getWindow();
         FXMLLoader root = new FXMLLoader(getClass().getResource("list-view.fxml"));
         ListController controller = new ListController(i);
@@ -139,6 +138,4 @@ public class MainController {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
