@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="listBookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: F2E7DC;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="28.0" prefWidth="800.0" style="-fx-background-color: A9D9D0;" AnchorPane.bottomAnchor="575.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Clear DB" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#clickOnAddBook" text="Add Book" />
+            <MenuItem mnemonicParsing="false" onAction="#buttonSearchBook" text="Search" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="List Book">
+          <items>
+            <MenuItem fx:id="MenuItems" mnemonicParsing="false" onAction="#clickOnReadBook" text="Read" />
+            <MenuItem mnemonicParsing="false" onAction="#clickOnWillReadBook" text="Will read" />
+            <MenuItem mnemonicParsing="false" onAction="#clickOnReadingBook" text="Reading" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Statistic" />
+      </menus>
+    </MenuBar>
+    <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: F2E7DC;" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="25.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <tabs>
+      <Tab text="Read">
+        <content>
+          <ScrollPane fx:id="scrollPaneRead" hbarPolicy="NEVER" style="-fx-background-color: F2E7DC;" vbarPolicy="ALWAYS">
+          <VBox fx:id="vBoxRead" style="-fx-background-color: A9D9D0;" />
+          </ScrollPane>
+        </content>
+      </Tab>
+      <Tab text="Will read">
+        <content>
+          <ScrollPane fx:id="scrollPaneWillRead" hbarPolicy="NEVER" style="-fx-background-color: F2E7DC;" vbarPolicy="ALWAYS">
+            <VBox fx:id="vBoxWillRead" style="-fx-background-color: A9D9D0;" />
+          </ScrollPane>
+        </content>
+      </Tab>
+      <Tab text="Reading">
+        <content>
+          <ScrollPane fx:id="scrollPaneReading" hbarPolicy="NEVER" style="-fx-background-color: F2E7DC;" vbarPolicy="ALWAYS">
+            <VBox fx:id="vBoxReading" style="-fx-background-color: A9D9D0;" />
+          </ScrollPane>
+        </content>
+      </Tab>
+    </tabs>
+  </TabPane>
+    <TextField fx:id="searchField" maxHeight="20.0" minHeight="20.0" onTextChange="#searchBook" prefHeight="20.0" text="Find" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="2.0" />
+  </children>
+</AnchorPane>
